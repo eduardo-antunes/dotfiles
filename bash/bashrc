@@ -1,0 +1,63 @@
+# .bashrc: configurações pessoais do bash. Contém variáveis de ambiente que
+# ajudam a manter o diretório pessoal limpo (seguindo à risca a convenção XDG)
+# e aliases que eu considero úteis no meu trabalho diário
+
+# Carrega as configurações globais
+if [ -f /etc/bashrc ]; then source /etc/bashrc; fi
+
+# Diretório pessoal de executáveis adicionado ao PATH
+if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+export PATH
+
+# Prompt decente, mais similar ao Fedora pré-39 (mas colorido)
+export PS1='\[\e[32m\][\u@\h \[\e[0m\]\W\[\e[32m\]]\[\e[0m\]\$ '
+
+# Diretórios padrão da convenção XDG. Várias aplicações usam a presença dessas
+# variáveis como um indicador de que ela deve ser respeitada, então eu as
+# defino explicitamente
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Algumas aplicações insistem em ignorar as variáveis acima e a convenção como
+# um todo por padrão, então eu as "corrijo" individualmente e explicitamente
+export GOPATH="$XDG_DATA_HOME/go"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export HISTFILE="$XDG_DATA_HOME/bash/history"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export _JAVA_OPTIONS=-D.java.util.prefs.userRoot="$XDG_DATA_HOME"/java
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+
+# Outras variáveis de ambiente
+export EDITOR=vi
+if command -v nvim > /dev/null 2>&1; then
+  export EDITOR=nvim
+fi
+export DOCKER_HOST='unix:///run/user/1000/docker.sock'
+
+# Aliases para comandos de listagem de arquivos (recursiva ou não). Através
+# deles, eu configuro os comandos para terem uma saída mais útil e organizada
+alias ls='ls --group-directories-first --sort=extension --color=auto'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+# Aliases para git
+alias tree='tree --gitignore --dirsfirst'
+alias gis='git status'
+
+function mkcd { mkdir -p "$1" && cd "$1"; }
+function open { xdg-open "$1" &> /dev/null & disown; }
+
+# Suporte à sequência OSC7
+function osc7 {
+  printf "\033]7;file://%s%s\033\\" "$HOSTNAME" "$PWD"
+}
+export PROMPT_COMMAND="osc7${PROMPT_COMMAND:+$'\n'$PROMPT_COMMAND}"
