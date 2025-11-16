@@ -67,6 +67,7 @@ case $# in
     cfg_item foot
     cfg_item gdb
     cfg_item nvim
+    cfg_item tmux
     cfg_item wezterm
     echo 'Ok!'
     ;;

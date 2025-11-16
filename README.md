@@ -6,6 +6,7 @@ programas que eu utilizo no dia a dia. São eles:
 * `foot`: emulador de terminal mínimo para o Wayland.
 * `gdb`: depurador para a linguagem C.
 * `nvim`: editor de texto de terminal, livre e extensível.
+* `tmux`: multiplexador de terminal leve.
 * `wezterm`: emulador de terminal multiplataforma e rico em funcionalidades.
 
 O foco definitivo aqui é no Linux, o sistema operacional que eu prefiro
