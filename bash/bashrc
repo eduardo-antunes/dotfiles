@@ -53,12 +53,11 @@ alias la='ls -lAh'
 alias tree='tree --gitignore --dirsfirst'
 alias glog='git log --oneline --all --graph'
 alias gis='git status'
-
 function mkcd { mkdir -p "$1" && cd "$1"; }
 function open { xdg-open "$1" &> /dev/null & disown; }
 
 # Suporte à sequência OSC7
-function osc7 { printf "\033]7;file://%s%s\033\\" "$HOSTNAME" "$PWD" }
+function osc7 { printf "\033]7;file://%s%s\033\\" "$HOSTNAME" "$PWD"; }
 export PROMPT_COMMAND="osc7${PROMPT_COMMAND:+$'\n'$PROMPT_COMMAND}"
 
 # Permite um bashrc privado, que não é incluído na minha configuração pessoal,
