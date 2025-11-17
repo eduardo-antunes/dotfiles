@@ -18,7 +18,8 @@ vim.o.equalalways = true
 
 vim.o.mouse = "a"
 vim.o.mousemodel = "extend"
-vim.opt.shortmess:append "SWc"
+vim.o.virtualedit = "block"
+vim.opt.shortmess:append "sSWc"
 
 -- Visual ----------------------------------------------------------------------
 
