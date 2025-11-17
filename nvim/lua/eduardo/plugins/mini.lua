@@ -15,9 +15,10 @@ require("mini.surround").setup()
 require("mini.move").setup {
   mappings = {
     -- Os atalhos padrão entram em conflito com o tmux
-    left = "<c-H>", right = "<c-L>", down = "<c-J>", up = "<c-K>",
-    line_left = "<c-H>", line_right = "<c-L>",
-    line_down = "<c-J>", line_up = "<c-K>"
+    down = "<c-down>", up = "<c-up>",
+    left = "<c-left>", right = "<c-right>",
+    line_left = "<c-left>", line_right = "<c-right>",
+    line_down = "<c-down>", line_up = "<c-up>"
   }
 }
 
