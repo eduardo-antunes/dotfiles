@@ -20,8 +20,8 @@ config.hide_tab_bar_if_only_one_tab = true
 
 config.window_padding = { left = 2, right = 2, top = 0, bottom = 0 }
 
-config.line_height = 1.05
 config.font = wezterm.font "Hack"
+config.line_height = on_windows and 1.1 or 1.05
 config.font_size = on_windows and 14 or 10
 
 config.freetype_load_target = "Light"
