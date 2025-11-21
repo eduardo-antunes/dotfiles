@@ -1,10 +1,10 @@
 -- plugins/dap.lua: configura depuração no neovim via nvim-dap. O DAP é um
 -- protocolo similar ao LSP, mas com foco específico em depuradores
 
-vim.keymap.set("n", "<F5>",  function() require("dap").continue()  end, { desc = "debug continue"  })
-vim.keymap.set("n", "<F10>", function() require("dap").step_over() end, { desc = "debug step_over" })
-vim.keymap.set("n", "<F11>", function() require("dap").step_into() end, { desc = "debug step_into" })
-vim.keymap.set("n", "<F12>", function() require("dap").step_over() end, { desc = "debug step_over" })
+vim.keymap.set("n", "<F5>", function() require("dap").continue()  end, { desc = "debug continue"  })
+vim.keymap.set("n", "<F6>", function() require("dap").step_over() end, { desc = "debug step_over" })
+vim.keymap.set("n", "<F7>", function() require("dap").step_into() end, { desc = "debug step_into" })
+vim.keymap.set("n", "<F8>", function() require("dap").step_out()  end, { desc = "debug step_over" })
 
 local function dap_bind(lhs, rhs, desc)
   vim.keymap.set("n", "<leader>d" .. lhs, rhs, { desc = "debug " .. desc })

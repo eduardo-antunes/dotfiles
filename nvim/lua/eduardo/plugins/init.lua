@@ -34,7 +34,8 @@ require("eduardo.plugins.pick")
 require("eduardo.plugins.oil")
 require("eduardo.plugins.dap")
 
-vim.g.accent_color = "green"
 vim.g.accent_terminal = true
 vim.g.accent_invert_status = true
+local accent = os.getenv "NVIM_ACCENT_COLOR"
+if accent then vim.g.accent_color = accent end
 vim.cmd.colors "accent"
