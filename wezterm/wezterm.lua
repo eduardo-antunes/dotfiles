@@ -1,7 +1,3 @@
--- Configuração do wezterm, um terminal multiplataforma rico em
--- funcionalidades. Atualmente é a única aplicação cotidiana pra mim que eu
--- utilizo no windows fora do WSL
-
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
@@ -20,11 +16,11 @@ config.hide_tab_bar_if_only_one_tab = true
 
 config.window_padding = { left = 2, right = 2, top = 0, bottom = 0 }
 
-config.font = wezterm.font "Hack"
-config.line_height = on_windows and 1.1 or 1.05
-config.font_size = on_windows and 14 or 10
+config.font = wezterm.font "Iosevka"
+config.line_height = on_windows and 1 or 1.05
+config.font_size = on_windows and 14 or 11
 
-config.freetype_load_target = "Light"
+if on_windows then config.freetype_load_target = "Light" end
 config.freetype_render_target = "HorizontalLcd"
 
 config.color_schemes = {
