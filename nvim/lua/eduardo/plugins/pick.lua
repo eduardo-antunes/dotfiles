@@ -24,7 +24,7 @@ vim.keymap.set("n", "<leader>h", pick.builtin.help, { desc = "pick help" })
 --------------------------------------------------------------------------------
 
 -- Muda a cor de destaque do accent.nvim
-vim.keymap.set("n", "<leader>C", function()
+local function accent_colors()
   local source = {
     name = "Accent Colors",
     choose = function(name)
@@ -34,11 +34,15 @@ vim.keymap.set("n", "<leader>C", function()
     items = require("accent").accent_colors,
   }
   pick.start { source = source }
-end, { desc = "pick accent_colors" })
+end
+pick.registry.accent_colors = accent_colors
+vim.keymap.set("n", "<leader>C", accent_colors, {
+  desc = "pick accent_colors"
+})
 
 -- Pesquisa em arquivos com caminhos truncados; útil principalmente em projetos
 -- com estruturas de diretórios profundamente aninhadas, como os típicos em java
-vim.keymap.set("n", "<leader>f", function()
+local function abbrev_files()
   local original_paths = {}
   local source = {
     name = "Abbrev Files (rg)",
@@ -49,7 +53,6 @@ vim.keymap.set("n", "<leader>f", function()
       pick.default_preview(buf, original_paths[path], opts)
     end,
   }
-
   pick.builtin.cli({
     command = { "rg", "--files" },
     postprocess = function(paths)
@@ -67,10 +70,14 @@ vim.keymap.set("n", "<leader>f", function()
       return items
     end,
   }, { source = source })
-end, { desc = "pick abbrev_files" })
+end
+pick.registry.abbrev_files = abbrev_files
+vim.keymap.set("n", "<leader>f", abbrev_files, {
+  desc = "pick abbrev_files"
+})
 
 -- Pesquisa apenas arquivos sob o diretório atual (caminhos truncados)
-vim.keymap.set("n", "<leader>.", function()
+local function current_filetree()
   local original_paths = {}
   local source = {
     name = "Current Filetree (rg)",
@@ -81,7 +88,6 @@ vim.keymap.set("n", "<leader>.", function()
       pick.default_preview(buf, original_paths[path], opts)
     end,
   }
-
   local dir = vim.fn.expand("%:h")
   pick.builtin.cli({
     command = { "rg", "--files", dir },
@@ -97,7 +103,11 @@ vim.keymap.set("n", "<leader>.", function()
       return items
     end
   }, { source = source })
-end, { desc = "pick current_filetree" })
+end
+pick.registry.current_filetree = current_filetree
+vim.keymap.set("n", "<leader>.", current_filetree, {
+  desc = "pick current_filetree"
+})
 
 --------------------------------------------------------------------------------
 

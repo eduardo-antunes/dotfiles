@@ -47,6 +47,12 @@ vim.lsp.config("rust-analyzer", {
   root_markers = { "Cargo.toml" },
 })
 
+vim.lsp.config("zls", {
+  cmd = { "zls" },
+  filetypes = { "zig" },
+  root_markers = { "build.zig" },
+})
+
 vim.lsp.config("typescript-language-server", {
   cmd = { "typescript-language-server", "--stdio" },
   filetypes = { "javascript", "typescript" },
@@ -70,6 +76,7 @@ if not vim.g.lsp_disable then
     "pylsp",
     "gopls",
     "rust-analyzer",
+    "zls",
     "typescript-language-server",
   }
 end

@@ -1,6 +1,6 @@
 -- plugins/treesitter.lua: configura o plugin nvim-treesitter
 
-local langs = { "c", "cpp", "rust", "lua", "python", "go", "vimdoc",
+local langs = { "c", "cpp", "rust", "zig", "lua", "python", "go", "vimdoc",
   "markdown", "java", "javascript", "typescript" }
 
 require("nvim-treesitter.configs").setup {

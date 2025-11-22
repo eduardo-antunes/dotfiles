@@ -22,12 +22,10 @@ require("mini.move").setup {
   }
 }
 
--- Atalhos e funções para alinhar texto verticalmente. Eu adoro fazer
--- isso, e me deixa bem satisfeito que não dê mais trabalho
+-- Atalhos e funções para alinhar texto verticalmente
 require("mini.align").setup()
 
--- Atalhos e funções para dividir listas em linhas e juntá-las novamente
--- Honestamente, um dos módulos mais específicos e úteis aqui
+-- Atalhos e funções para dividir e juntar listas em linhas
 require("mini.splitjoin").setup()
 
 -- Expande o sistema de preenchimento ("completion") nativo do vim,
