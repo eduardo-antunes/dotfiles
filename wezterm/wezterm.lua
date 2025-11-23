@@ -17,15 +17,12 @@ config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = { left = 2, right = 2, top = 0, bottom = 0 }
 
 config.font = wezterm.font "Iosevka"
-config.line_height = on_windows and 1 or 1.05
 config.font_size = on_windows and 14 or 11
 
 if on_windows then config.freetype_load_target = "Light" end
 config.freetype_render_target = "HorizontalLcd"
 
-config.color_schemes = {
-  ["starlight"] = require("colors.starlight")
-}
+config.color_schemes = { ["starlight"] = require("colors.starlight") }
 config.color_scheme = "starlight"
 
 -- Atalhos de teclado ----------------------------------------------------------

@@ -11,7 +11,6 @@ function M.common_prefix_len(words)
   if not words or #words == 0 then
     return 0
   end
-
   local min = words[1]
   local max = words[1]
   for i = 2, #words do
@@ -20,7 +19,6 @@ function M.common_prefix_len(words)
       if words[i] > max then max = words[i] end
     end
   end
-
   local c = 0
   for i = 1, #min do
     if max:byte(i) ~= min:byte(i) then
