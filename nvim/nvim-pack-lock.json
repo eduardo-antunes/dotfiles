@@ -13,7 +13,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "6e885e4",
+      "rev": "72b0194",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-dap": {
@@ -21,7 +21,7 @@
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-jdtls": {
-      "rev": "38d265e",
+      "rev": "943e239",
       "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-treesitter": {
