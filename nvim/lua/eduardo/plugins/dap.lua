@@ -17,7 +17,7 @@ dap_bind("h", function() require("dap.ui.widgets").hover()   end, "hover"    )
 dap_bind("p", function() require("dap.ui.widgets").preview() end, "preview"  )
 
 dap_bind("L", function()
-  require("dap").set_breakpoint(nil, nil, vim.fn.input("Mensagem: "))
+  require("dap").set_breakpoint(nil, nil, vim.fn.input("dap_log: "))
 end, "break_with_log")
 
 dap_bind("f", function()
@@ -29,3 +29,10 @@ dap_bind("s", function()
   local w = require("dap.ui.widgets")
   w.centered_float(w.scopes)
 end, "scopes")
+
+local dap_group = vim.api.nvim_create_augroup("eduardo_dap", {})
+vim.api.nvim_create_autocmd("FileType", {
+  group = dap_group, pattern = "dap-float", callback = function(ev)
+    vim.keymap.set("n", "q", "<c-w>q", { buffer = ev.buf })
+  end
+})
