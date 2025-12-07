@@ -22,6 +22,11 @@ require("mini.move").setup {
   }
 }
 
+-- Atalho para remover buffers preservando layout das janelas
+vim.keymap.set("n", "<leader>b", function()
+  require("mini.bufremove").delete()
+end)
+
 -- Atalhos e funções para alinhar texto verticalmente
 require("mini.align").setup()
 

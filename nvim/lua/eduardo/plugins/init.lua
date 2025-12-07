@@ -34,6 +34,7 @@ require("eduardo.plugins.pick")
 require("eduardo.plugins.oil")
 require("eduardo.plugins.dap")
 
+vim.g.accent_darken = true
 vim.g.accent_terminal = true
 vim.g.accent_gray_status = true
 vim.g.accent_italic_comments = true

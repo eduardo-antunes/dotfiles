@@ -13,7 +13,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "72b0194",
+      "rev": "dca98843fab66d080779cd973e7139e258ff164c",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-dap": {
@@ -21,7 +21,7 @@
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-jdtls": {
-      "rev": "943e239",
+      "rev": "f73731b543f5971e0da9665eb1d7ceffe1fde71f",
       "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-treesitter": {
@@ -29,7 +29,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "oil.nvim": {
-      "rev": "01cb3a8",
+      "rev": "cbcb3f997f6f261c577b943ec94e4ef55108dd95",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "plainline": {

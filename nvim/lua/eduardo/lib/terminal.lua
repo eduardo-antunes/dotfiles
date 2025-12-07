@@ -19,6 +19,8 @@ local function term_create()
     group = M.group, buffer = buf,
     callback = function() vim.t.termwin = nil end
   })
+  local n = vim.api.nvim_tabpage_get_number(0)
+  vim.b.term_title = string.format("Terminal %s", n)
 end
 
 function M.open()
