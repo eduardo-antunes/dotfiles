@@ -38,6 +38,5 @@ vim.g.accent_darken = true
 vim.g.accent_terminal = true
 vim.g.accent_gray_status = true
 vim.g.accent_italic_comments = true
-local accent = os.getenv "NVIM_ACCENT_COLOR"
-if accent then vim.g.accent_color = accent end
+vim.g.accent_color = "lime"
 vim.cmd.colors "accent"
