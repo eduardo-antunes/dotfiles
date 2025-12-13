@@ -1,4 +1,4 @@
--- lib/terminal.lua: biblioteca que permite manter um único terminal por aba,
+-- terminal.lua: biblioteca que permite manter um único terminal por aba,
 -- com funções para utilizá-lo eficientemente
 
 local autocmd = vim.api.nvim_create_autocmd

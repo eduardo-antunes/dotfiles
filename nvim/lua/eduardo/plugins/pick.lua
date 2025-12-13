@@ -4,16 +4,9 @@
 local pick = require("mini.pick")
 local u = require("eduardo.lib.utils")
 
-local win_config = function()
-  local config = u.win_center_compute()
-  config.style = "minimal"
-  config.border = "rounded"
-  return config
-end
-
 vim.ui.select = pick.ui_select
 pick.setup {
-  window = { config = win_config },
+  window = { config = u.float_win_config },
   source = { show = pick.default_show },
 }
 

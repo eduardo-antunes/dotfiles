@@ -12,9 +12,10 @@ local term = require("eduardo.lib.terminal")
 local tabnew_str  = ":tabnew|tcd ~/src/"
 local replace_str = ":s/<c-r><c-w>//g<left><left>"
 
+vim.keymap.set("n", "Q", function() vim.print("Guaraná!") end, { desc = "taunt" })
+
 vim.keymap.set("n", "H"      , "^"      )
 vim.keymap.set("n", "L"      , "$"      )
-vim.keymap.set("n", "Q"      , "<nop>"  )
 vim.keymap.set("n", "<tab>"  , "gt"     )
 vim.keymap.set("n", "<s-tab>", "gT"     )
 vim.keymap.set("n", "<bs>"   , "<c-^>zz")
@@ -68,3 +69,14 @@ vim.keymap.set("t", "<c-k>", term.esc .. "<c-w>k")
 vim.keymap.set("t", "<c-j>", term.esc .. "<c-w>j")
 vim.keymap.set("t", "<c-h>", term.esc .. "<c-w>h")
 vim.keymap.set("t", "<c-l>", term.esc .. "<c-w>l")
+
+-- Plugin interno: clawline ----------------------------------------------------
+
+local shaw = require("eduardo.lib.clawline")
+vim.keymap.set("n", "<leader>U", shaw.show_list, { desc = "clawline show_list"})
+vim.keymap.set("n", "<leader>u", shaw.add_current_file, { desc = "clawline add_current_file"})
+for i = 1, 9 do
+  local lhs = string.format("<leader>%d", i)
+  local desc = string.format("clawline goto %d", i)
+  vim.keymap.set("n", lhs, function() shaw.goto(i) end, { desc = desc })
+end

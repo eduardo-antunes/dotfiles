@@ -42,13 +42,15 @@ function M.padline()
   vim.cmd(string.format("normal $%da-", n))
 end
 
--- Calcula os valores necessários para centralizar janelas flutuantes
-function M.win_center_compute()
+-- Configuração pronta para janelas flutuantes e centralizadas
+function M.float_win_config()
   local W, H = vim.o.columns, vim.o.lines
   local height = math.floor(0.618 * H)
   local width  = math.floor(0.618 * W)
   return {
     anchor = "NW",
+    style = "minimal",
+    relative = "editor",
     height = height, width = width,
     row = math.floor(0.5 * (H - height)),
     col = math.floor(0.5 * (W - width)),
