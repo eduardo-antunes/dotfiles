@@ -15,7 +15,6 @@ vim.pack.add {
   { src = github "mfussenegger/nvim-jdtls"         },
 }
 
-require("plainline").setup()
 require("guess-indent").setup()
 require("mason").setup {
   ui = {
@@ -33,6 +32,21 @@ require("eduardo.plugins.mini")
 require("eduardo.plugins.pick")
 require("eduardo.plugins.oil")
 require("eduardo.plugins.dap")
+
+local function shorten_java_path(name)
+  if vim.bo.filetype ~= "java" then return name end
+  local n = 0
+  for i = 1, #name do
+    if name:sub(i, i) == "/" then
+      n = n + 1
+    end
+  end
+  return name:gsub("([^/])[^/]*/", n - 1)
+end
+
+require("plainline").setup {
+  name_filters = { "clean", shorten_java_path }
+}
 
 vim.g.accent_darken = true
 vim.g.accent_terminal = true
