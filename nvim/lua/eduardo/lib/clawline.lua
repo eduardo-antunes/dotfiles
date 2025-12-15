@@ -3,7 +3,7 @@
 -- outras palavras, são marcas globais sem uma posição. O nome é uma referência
 -- a hollow knight silksong. Guaraná!
 
-local M = { clawline_list = {} }
+local M = { clawline_list = {}, buf_nr = 1 }
 
 M.group = vim.api.nvim_create_augroup("clawline", {})
 
@@ -23,7 +23,9 @@ end
 
 local function create_clawline_list_buffer()
   local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_name(buf, "clawline")
+  local name = string.format("%d/clawline", M.buf_nr)
+  vim.api.nvim_buf_set_name(buf,name)
+  M.buf_nr = M.buf_nr + 1
 
   -- Define o conteúdo do buffer
   local lines = {}

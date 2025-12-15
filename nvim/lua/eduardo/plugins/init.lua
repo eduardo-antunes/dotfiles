@@ -35,13 +35,9 @@ require("eduardo.plugins.dap")
 
 local function shorten_java_path(name)
   if vim.bo.filetype ~= "java" then return name end
-  local n = 0
-  for i = 1, #name do
-    if name:sub(i, i) == "/" then
-      n = n + 1
-    end
-  end
-  return name:gsub("([^/])[^/]*/", n - 1)
+  local n = require("eduardo.lib.utils").count_substr(name, "/")
+  local res = name:gsub("([^/])[^/]*/", "", n - 1)
+  return res
 end
 
 require("plainline").setup {

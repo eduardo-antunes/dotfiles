@@ -57,4 +57,15 @@ function M.float_win_config()
   }
 end
 
+-- Conta ocorrências de uma substring em uma string
+function M.count_substr(str, sub)
+  local n = 0
+  for i = 1, #str do
+    if str:sub(i, i) == sub then
+      n = n + 1
+    end
+  end
+  return n
+end
+
 return M
