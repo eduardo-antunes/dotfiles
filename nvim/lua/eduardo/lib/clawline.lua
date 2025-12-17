@@ -8,7 +8,9 @@ local M = { clawline_list = {}, buf_nr = 1 }
 M.group = vim.api.nvim_create_augroup("clawline", {})
 
 function M.add_current_file()
-  local cwd = string.format("%s/", vim.uv.cwd())
+  -- Como o diretório atual pode conter coisas que a linguagem lua trata de
+  -- forma especial na função gsub, precisamos fazer algum pré-processamento
+  local cwd = vim.uv.cwd():gsub("(%W)", "%%%1") .. "/"
   local name = vim.api.nvim_buf_get_name(0):gsub(cwd, "")
   for _, existing_name in ipairs(M.clawline_list) do
     if name == existing_name then return end
