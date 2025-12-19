@@ -102,6 +102,15 @@ vim.keymap.set("n", "<leader>.", current_filetree, {
   desc = "pick current_filetree"
 })
 
+-- Pesquisa todos os arquivos, inclusive os ocultos, com exceção da pasta .git
+local function all_files()
+  local source = { name = "All Files (rg)" }
+  local command = { "rg", "--files", "--hidden", "--glob", "!.git" }
+  pick.builtin.cli({ command = command }, { source = source })
+end
+pick.registry.all_files = all_files
+vim.keymap.set("n", "<leader>F", all_files, { desc = "pick all_files" })
+
 --------------------------------------------------------------------------------
 
 local extra = require("mini.extra").pickers

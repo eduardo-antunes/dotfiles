@@ -15,6 +15,13 @@ vim.pack.add {
   { src = github "mfussenegger/nvim-jdtls"         },
 }
 
+require("eduardo.plugins.treesitter")
+require("eduardo.plugins.fugitive")
+require("eduardo.plugins.mini")
+require("eduardo.plugins.pick")
+require("eduardo.plugins.oil")
+require("eduardo.plugins.dap")
+
 require("guess-indent").setup()
 require("mason").setup {
   ui = {
@@ -25,13 +32,6 @@ require("mason").setup {
     }
   }
 }
-
-require("eduardo.plugins.treesitter")
-require("eduardo.plugins.fugitive")
-require("eduardo.plugins.mini")
-require("eduardo.plugins.pick")
-require("eduardo.plugins.oil")
-require("eduardo.plugins.dap")
 
 local function shorten_java_path(name)
   if vim.bo.filetype ~= "java" then return name end

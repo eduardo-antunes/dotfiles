@@ -6,7 +6,7 @@ local t = require("eduardo.lib.terminal").group
 
 autocmd("TextYankPost", {
   group = e, callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end
 })
 
