@@ -63,6 +63,7 @@ case $# in
   0)
     echo 'Carregando todas as configurações...'
     cfg_item_bash
+    cfg_item_bin
     cfg_item emacs
     cfg_item foot
     cfg_item gdb

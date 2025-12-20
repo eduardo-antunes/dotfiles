@@ -38,7 +38,7 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 
 # Outras variáveis de ambiente
 export EDITOR=vi
-if command -v nvim > /dev/null 2>&1; then
+if command -v nvim &> /dev/null ; then
   export EDITOR=nvim
 fi
 export DOCKER_HOST='unix:///run/user/1000/docker.sock'
@@ -55,6 +55,13 @@ alias glog='git log --oneline --all --graph'
 alias gis='git status'
 function mkcd { mkdir -p "$1" && cd "$1"; }
 function open { xdg-open "$1" &> /dev/null & disown; }
+
+# Carrega meu script de cd, caso esteja presente
+if [[ -f "$HOME/.local/bin/ecd-func.sh" ]]; then
+  source "$HOME/.local/bin/ecd-func.sh"
+  alias cd=ecd
+  bind '"\C-w":"cd --\n"' # atalho mais conveniente
+fi
 
 # Suporte à sequência OSC 7
 function osc7 { printf "\e]7;file://%s%s\e\\" "$HOSTNAME" "$PWD"; }
