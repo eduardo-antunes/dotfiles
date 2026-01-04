@@ -1,16 +1,15 @@
 -- ftplugin/java.lua: configurações específicas para java, com focos em projetos
 -- que utilizam gradle e spring boot
 
-local term = require("eduardo.lib.terminal")
+local function set(key, cmd, desc)
+  local opts = { buffer = 0, desc = desc }
+  local lhs = string.format("<localleader>%s", key)
+  local rhs = function()
+    require("eduardo.lib.terminal").send(cmd)
+  end
+  vim.keymap.set("n", lhs, rhs, opts)
+end
 
-vim.keymap.set("n", "<localleader>b", function()
-    term.send "./gradlew build"
-end, { desc = "gradle build" })
-
-vim.keymap.set("n", "<localleader>r", function()
-    term.send "./gradlew bootRun"
-end, { desc = "gradle run" })
-
-vim.keymap.set("n", "<localleader>d", function()
-    term.send "./gradlew bootRun --debug-jvm"
-end, { desc = "gradle debug" })
+set("b", "./gradlew build", "gradle build")
+set("r", "./gradlew bootRun", "gradle build")
+set("d", "./gradlew bootRun --debug-jvm", "gradle debug")
