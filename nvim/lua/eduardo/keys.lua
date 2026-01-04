@@ -6,6 +6,7 @@ vim.g.maplocalleader = ","
 
 local u = require("eduardo.lib.utils")
 local term = require("eduardo.lib.terminal")
+local claw = require("eduardo.lib.clawline")
 
 -- Básicos ---------------------------------------------------------------------
 
@@ -42,19 +43,6 @@ vim.keymap.set("n", "<leader>yy", '"+yy', { desc = "clipboard yank_line"   })
 vim.keymap.set("n", "<leader>Y" , '"+y$', { desc = "clipboard yank_to_eol" })
 vim.keymap.set("v", "<leader>y" , '"+y' , { desc = "clipboard yank_visual" })
 
--- Terminal --------------------------------------------------------------------
-
-local term_tab_str = "<cmd>tabnew|terminal<cr>"
-local repeat_cmd = function() term.send "!!" end
-
-vim.keymap.set("t", "<esc>", term.esc)
-vim.keymap.set("t", "<a-l>", "<c-l>")
-vim.keymap.set("t", "<a-k>", "<c-k>")
-
-vim.keymap.set("n", "<leader>T", term_tab_str, { desc = "terminal tabnew" })
-vim.keymap.set("n", "<leader>t", term.open   , { desc = "terminal open"   })
-vim.keymap.set("n", "<leader>r", repeat_cmd  , { desc = "terminal repeat" })
-
 -- Navegação entre janelas -----------------------------------------------------
 
 vim.keymap.set("n", "<c-k>", "<c-w>k")
@@ -70,13 +58,29 @@ vim.keymap.set("t", "<c-j>", term.esc .. "<c-w>j")
 vim.keymap.set("t", "<c-h>", term.esc .. "<c-w>h")
 vim.keymap.set("t", "<c-l>", term.esc .. "<c-w>l")
 
--- Plugin interno: clawline ----------------------------------------------------
+-- Terminal --------------------------------------------------------------------
 
-local shaw = require("eduardo.lib.clawline")
-vim.keymap.set("n", "<leader>U", shaw.show_list, { desc = "clawline show_list"})
-vim.keymap.set("n", "<leader>u", shaw.add_current_file, { desc = "clawline add_current_file"})
+local term_tab_str = "<cmd>tabnew|terminal<cr>"
+local repeat_cmd = function() term.send "!!" end
+
+vim.keymap.set("t", "<esc>", term.esc)
+vim.keymap.set("t", "<a-l>", "<c-l>")
+vim.keymap.set("t", "<a-k>", "<c-k>")
+
+vim.keymap.set("n", "<leader>T", term_tab_str, { desc = "terminal tabnew" })
+vim.keymap.set("n", "<leader>t", term.open   , { desc = "terminal open"   })
+vim.keymap.set("n", "<leader>r", repeat_cmd  , { desc = "terminal repeat" })
+
+-- Clawline --------------------------------------------------------------------
+
+local show_list_desc = "clawline show_list"
+local add_desc = "clawline add_current_file"
+
+vim.keymap.set("n", "<leader>U", c.show_list, { desc = show_list_desc  })
+vim.keymap.set("n", "<leader>u", c.add_current_file, { desc = add_desc })
+
 for i = 1, 9 do
   local lhs = string.format("<leader>%d", i)
   local desc = string.format("clawline goto %d", i)
-  vim.keymap.set("n", lhs, function() shaw.goto(i) end, { desc = desc })
+  vim.keymap.set("n", lhs, function() c.goto(i) end, { desc = desc })
 end
