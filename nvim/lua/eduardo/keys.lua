@@ -76,11 +76,11 @@ vim.keymap.set("n", "<leader>r", repeat_cmd  , { desc = "terminal repeat" })
 local show_list_desc = "clawline show_list"
 local add_desc = "clawline add_current_file"
 
-vim.keymap.set("n", "<leader>U", c.show_list, { desc = show_list_desc  })
-vim.keymap.set("n", "<leader>u", c.add_current_file, { desc = add_desc })
+vim.keymap.set("n", "<leader>U", claw.show_list, { desc = show_list_desc  })
+vim.keymap.set("n", "<leader>u", claw.add_current_file, { desc = add_desc })
 
 for i = 1, 9 do
   local lhs = string.format("<leader>%d", i)
   local desc = string.format("clawline goto %d", i)
-  vim.keymap.set("n", lhs, function() c.goto(i) end, { desc = desc })
+  vim.keymap.set("n", lhs, function() claw.goto(i) end, { desc = desc })
 end
