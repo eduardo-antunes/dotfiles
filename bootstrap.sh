@@ -9,7 +9,7 @@
 # Modo de uso: ./bootstrap.sh [item-configuração]                              #
 #------------------------------------------------------------------------------#
 
-DOTFILES_DIR="$PWD"
+DOTFILES_DIR="$(cd "$(dirname $0)" && pwd)"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 # Cria link para item de configuração genérico (~/.config)
@@ -46,16 +46,18 @@ cfg_item_bin() {
     echo 'Item de configuração local-bin não existe'
     return 1
   fi
+  local bindir="$HOME/.local/bin"
+  [ ! -d $bindir ] && mkdir $bindir
 
   # Aqui, criam-se links para arquivos individuais em vez do diretório como
   # um todo, pois eu posso ter programas externos instalados em ~/.local/bin
   # e eu não quero que eles apareçam no repositório
   for script in $DOTFILES_DIR/local-bin/*; do
     local filename="$(basename "$script")"
-    local dest="$HOME/.local/bin/$filename"
+    local dest="$bindir/$filename"
     [ -h "$dest" ] && return 0 # já está carregado
     [ -f "$dest" ] && mv "$dest" "$dest.bak"
-    ln -s "$script" "$HOME/.local/bin"
+    ln -s "$script" $bindir
   done
 }
 
