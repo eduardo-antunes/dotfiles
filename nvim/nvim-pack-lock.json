@@ -1,23 +1,23 @@
 {
   "plugins": {
     "accent.nvim": {
-      "rev": "6b46907",
+      "rev": "291a910c5d6deadfe73f82c738445f88f656536c",
       "src": "https://github.com/eduardo-antunes/accent.nvim"
     },
     "guess-indent.nvim": {
-      "rev": "84a4987",
+      "rev": "84a4987ff36798c2fc1169cbaff67960aed9776f",
       "src": "https://github.com/NMAC427/guess-indent.nvim"
     },
     "mason.nvim": {
-      "rev": "57e5a8a",
+      "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "6f11e41a137590e4a5f13624a2a9a845686e719f",
+      "rev": "8dccba88fc4dce006ca0ad668067c9e0d5ce7702",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-dap": {
-      "rev": "5860c7c",
+      "rev": "cdfd55a133f63228c55f91378f12908cb2a78ded",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-jdtls": {
@@ -25,19 +25,19 @@
       "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-treesitter": {
-      "rev": "42fc28ba",
+      "rev": "5a7e5638e7d220575b1c22c8a2e099b52231886e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "oil.nvim": {
-      "rev": "cbcb3f997f6f261c577b943ec94e4ef55108dd95",
+      "rev": "81b8a91735ad5cd24a6b3137f14a89f19176364f",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "plainline": {
-      "rev": "c5da747",
+      "rev": "16687ae23c5c904ba92e0ab1b975198184d0aac3",
       "src": "https://github.com/eduardo-antunes/plainline"
     },
     "vim-fugitive": {
-      "rev": "61b51c0",
+      "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
       "src": "https://github.com/tpope/vim-fugitive"
     }
   }
