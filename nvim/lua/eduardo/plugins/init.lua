@@ -43,9 +43,7 @@ require("plainline").setup {
   name_filters = { "clean", shorten_java_path }
 }
 
-vim.g.accent_darken = true
 vim.g.accent_terminal = true
-vim.g.accent_gray_status = true
 vim.g.accent_italic_comments = true
-vim.g.accent_color = "lime"
+vim.g.accent_color = "green"
 vim.cmd.colors "accent"
