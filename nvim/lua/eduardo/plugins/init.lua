@@ -44,6 +44,11 @@ require("plainline").setup {
 }
 
 vim.g.accent_terminal = true
+vim.g.accent_gray_status = true
 vim.g.accent_italic_comments = true
-vim.g.accent_color = "green"
 vim.cmd.colors "accent"
+
+vim.keymap.set("n", "<leader><tab>", function()
+  vim.g.accent_gray_status = not vim.g.accent_gray_status
+  vim.cmd.colors "accent"
+end)

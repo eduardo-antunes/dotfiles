@@ -84,3 +84,21 @@ for i = 1, 9 do
   local desc = string.format("clawline goto %d", i)
   vim.keymap.set("n", lhs, function() claw.goto(i) end, { desc = desc })
 end
+
+-- Modo de apresentação --------------------------------------------------------
+
+-- Às vezes apresento a minha tela com o neovim aberto para discutir o código,
+-- e algumas opções que tenho ligadas por padrão e me ajudam muito acabam sendo
+-- inconvenientes para esse objetivo. Por exemplo, linhas relativas tornam a
+-- comunicação ambígua, por mais úteis que sejam no cotidiano
+local function toggle_present_mode()
+  vim.g.present_mode = not vim.g.present_mode
+
+  local sign_value = vim.g.present_mode and "yes" or "number"
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    vim.wo[win].relativenumber = not vim.o.relativenumber
+    vim.wo[win].signcolumn = sign_value
+  end
+end
+
+vim.keymap.set("n", "<leader>P", toggle_present_mode)
