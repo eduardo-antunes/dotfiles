@@ -1,6 +1,7 @@
 -- plugins/init.lua: instala e configura os plugins que eu uso com vim.pack
 
 local github = function(x) return "https://github.com/" .. x end
+local codeberg = function(x) return "https://codeberg.org/" .. x end
 
 vim.pack.add {
   { src = github "eduardo-antunes/accent.nvim"     },
@@ -11,8 +12,8 @@ vim.pack.add {
   { src = github "stevearc/oil.nvim"               },
   { src = github "mason-org/mason.nvim"            },
   { src = github "nvim-treesitter/nvim-treesitter" },
-  { src = github "mfussenegger/nvim-dap"           },
-  { src = github "mfussenegger/nvim-jdtls"         },
+  { src = codeberg "mfussenegger/nvim-dap"         },
+  { src = codeberg "mfussenegger/nvim-jdtls"       },
 }
 
 require("eduardo.plugins.treesitter")
@@ -21,7 +22,6 @@ require("eduardo.plugins.mini")
 require("eduardo.plugins.pick")
 require("eduardo.plugins.oil")
 require("eduardo.plugins.dap")
-
 require("guess-indent").setup()
 require("mason").setup {
   ui = {
@@ -51,4 +51,4 @@ vim.cmd.colors "accent"
 vim.keymap.set("n", "<leader><tab>", function()
   vim.g.accent_gray_status = not vim.g.accent_gray_status
   vim.cmd.colors "accent"
-end)
+end, { desc = "accent toggle_gray" })
