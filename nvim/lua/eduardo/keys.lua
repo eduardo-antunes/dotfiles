@@ -10,7 +10,6 @@ local claw = require("eduardo.lib.clawline")
 
 -- Básicos ---------------------------------------------------------------------
 
-local tabnew_str  = ":tabnew|tcd ~/src/"
 local replace_str = ":s/<c-r><c-w>//g<left><left>"
 
 vim.keymap.set("n", "Q", function() vim.print("Guaraná!") end, { desc = "taunt" })
@@ -25,13 +24,14 @@ vim.keymap.set("n", "<c-d>"  , "<c-d>zz")
 
 vim.keymap.set("n", "<leader>*"   , u.padline, { desc = "padline"         })
 vim.keymap.set("n", "<leader><bs>", u.trim_ws, { desc = "trim_whitespace" })
+vim.keymap.set("n", "<leader>P"   , u.toggle_present_mode, { desc = "toggle_present_mode" })
 
-vim.keymap.set("n", "<leader>s", ":%s/"       , { desc = "replace"           })
-vim.keymap.set("n", "<leader>/", ":grep "     , { desc = "grep"              })
-vim.keymap.set("n", "<leader>e", ":e %:h/"    , { desc = "current_dir_edit"  })
-vim.keymap.set("n", "<leader>c", replace_str  , { desc = "replace_word_line" })
-vim.keymap.set("n", "<leader>w", vim.cmd.write, { desc = "write"             })
-vim.keymap.set("n", "<leader>n", tabnew_str   , { desc = "tabnew"            })
+vim.keymap.set("n", "<leader>s", ":%s/"        , { desc = "replace"           })
+vim.keymap.set("n", "<leader>/", ":grep "      , { desc = "grep"              })
+vim.keymap.set("n", "<leader>e", ":e %:h/"     , { desc = "current_dir_edit"  })
+vim.keymap.set("n", "<leader>c", replace_str   , { desc = "replace_word_line" })
+vim.keymap.set("n", "<leader>w", vim.cmd.write , { desc = "write"             })
+vim.keymap.set("n", "<leader>n", vim.cmd.tabnew, { desc = "tabnew"            })
 
 -- Cópia e cola ----------------------------------------------------------------
 
@@ -85,20 +85,3 @@ for i = 1, 9 do
   vim.keymap.set("n", lhs, function() claw.goto(i) end, { desc = desc })
 end
 
--- Modo de apresentação --------------------------------------------------------
-
--- Às vezes apresento a minha tela com o neovim aberto para discutir o código,
--- e algumas opções que tenho ligadas por padrão e me ajudam muito acabam sendo
--- inconvenientes para esse objetivo. Por exemplo, linhas relativas tornam a
--- comunicação ambígua, por mais úteis que sejam no cotidiano
-local function toggle_present_mode()
-  vim.g.present_mode = not vim.g.present_mode
-
-  local sign_value = vim.g.present_mode and "yes" or "number"
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    vim.wo[win].relativenumber = not vim.o.relativenumber
-    vim.wo[win].signcolumn = sign_value
-  end
-end
-
-vim.keymap.set("n", "<leader>P", toggle_present_mode)

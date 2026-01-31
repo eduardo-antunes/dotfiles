@@ -68,4 +68,48 @@ function M.count_substr(str, sub)
   return n
 end
 
+-- Às vezes apresento a minha tela com o neovim aberto para discutir código,
+-- e algumas opções que tenho ligadas por padrão e me ajudam muito acabam sendo
+-- inconvenientes para esse objetivo. Por exemplo, linhas relativas tornam a
+-- comunicação ambígua, por mais úteis que sejam no cotidiano
+function M.toggle_present_mode()
+  vim.g.presentation_mode = not vim.g.presentation_mode
+
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.g.presentation_mode then
+      vim.wo[win].relativenumber = false
+      vim.wo[win].signcolumn = "yes"
+      goto continue
+    end
+    vim.wo[win].relativenumber = true
+    vim.wo[win].signcolumn = "number"
+    ::continue::
+  end
+end
+
+-- Define atalhos locais no buffer corrente
+-- Utilizado por conveniência em arquivos de ftplugin
+function M.set_local_keys(specs)
+  for _, spec in ipairs(specs) do
+    local lhs = string.format("<localleader>%s", spec.lhs)
+    vim.keymap.set("n", lhs, spec.rhs, {
+      buffer = 0, desc = spec.desc
+    })
+  end
+end
+
+-- Define atalhos locais para comandos de terminal no buffer corrente
+-- Utilizado por conveniência em arquivos de ftplugin
+function M.set_local_term_keys(specs)
+  for _, spec in ipairs(specs) do
+    local lhs = string.format("<localleader>%s", spec.lhs)
+    local rhs = function()
+      require("eduardo.lib.terminal").send(spec.cmd)
+    end
+    vim.keymap.set("n", lhs, rhs, {
+      buffer = 0, desc = spec.desc
+    })
+  end
+end
+
 return M

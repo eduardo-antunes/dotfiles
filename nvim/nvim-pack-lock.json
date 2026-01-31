@@ -17,7 +17,7 @@
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-dap": {
-      "rev": "b9639ca05dd692647594733554640377ec6b1ab9",
+      "rev": "e47878dcf1ccc30136b30d19ab19fe76946d61cd",
       "src": "https://codeberg.org/mfussenegger/nvim-dap"
     },
     "nvim-jdtls": {
@@ -25,7 +25,7 @@
       "src": "https://codeberg.org/mfussenegger/nvim-jdtls"
     },
     "nvim-treesitter": {
-      "rev": "275b9fe801d56d5fea6d34f5bfea8bb24887b805",
+      "rev": "4967fa48b0fe7a7f92cee546c76bb4bb61bb14d5",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "oil.nvim": {

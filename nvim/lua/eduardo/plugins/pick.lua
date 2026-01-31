@@ -16,23 +16,6 @@ vim.keymap.set("n", "<leader>h", pick.builtin.help, { desc = "pick help" })
 
 --------------------------------------------------------------------------------
 
--- Muda a cor de destaque do accent.nvim
-local function accent_colors()
-  local source = {
-    name = "Accent Colors",
-    choose = function(name)
-      vim.g.accent_color = name
-      vim.cmd.colors "accent"
-    end,
-    items = require("accent").accent_colors,
-  }
-  pick.start { source = source }
-end
-pick.registry.accent_colors = accent_colors
-vim.keymap.set("n", "<leader>C", accent_colors, {
-  desc = "pick accent_colors"
-})
-
 -- Pesquisa em arquivos com caminhos truncados; útil principalmente em projetos
 -- com estruturas de diretórios profundamente aninhadas, como os típicos em java
 local function abbrev_files()

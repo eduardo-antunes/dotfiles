@@ -22,6 +22,7 @@ require("eduardo.plugins.mini")
 require("eduardo.plugins.pick")
 require("eduardo.plugins.oil")
 require("eduardo.plugins.dap")
+
 require("guess-indent").setup()
 require("mason").setup {
   ui = {
@@ -33,22 +34,45 @@ require("mason").setup {
   }
 }
 
-local function shorten_java_path(name)
-  if vim.bo.filetype ~= "java" then return name end
+if not vim.g.long_path_length then
+  vim.g.long_path_length = 50
+end
+
+local function shorten_long_paths(name)
+  if #name < vim.g.long_path_length then return name end
   local n = require("eduardo.lib.utils").count_substr(name, "/")
   local res = name:gsub("([^/])[^/]*/", "%1/", n - 1); return res
 end
 
 require("plainline").setup {
-  name_filters = { "clean", shorten_java_path }
+  name_filters = { "clean", shorten_long_paths }
 }
 
+--------------------------------------------------------------------------------
+
+vim.g.accent_color = "green"
 vim.g.accent_terminal = true
-vim.g.accent_gray_status = true
-vim.g.accent_italic_comments = true
 vim.cmd.colors "accent"
 
 vim.keymap.set("n", "<leader><tab>", function()
   vim.g.accent_gray_status = not vim.g.accent_gray_status
   vim.cmd.colors "accent"
 end, { desc = "accent toggle_gray" })
+
+local pick = require("mini.pick")
+local function pick_accent_colors()
+  local source = {
+    name = "Accent Colors",
+    choose = function(name)
+      vim.g.accent_color = name
+      vim.cmd.colors "accent"
+    end,
+    items = require("accent").accent_colors,
+  }
+  pick.start { source = source }
+end
+
+pick.registry.accent_colors = pick_accent_colors
+vim.keymap.set("n", "<leader>C", pick_accent_colors, {
+  desc = "accent pick_colors"
+})
