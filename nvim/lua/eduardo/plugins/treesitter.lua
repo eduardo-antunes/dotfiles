@@ -1,7 +1,7 @@
 -- plugins/treesitter.lua: configura o plugin nvim-treesitter
 
 local langs = { "c", "cpp", "rust", "zig", "lua", "python", "go", "vimdoc",
-  "markdown", "java", "javascript", "typescript" }
+  "markdown", "java", "javascript", "typescript", "comment" }
 
 local treesit_gr = vim.api.nvim_create_augroup("treesit-group", {})
 vim.api.nvim_create_autocmd("FileType", {
