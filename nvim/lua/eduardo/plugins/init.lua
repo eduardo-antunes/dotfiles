@@ -34,10 +34,7 @@ require("mason").setup {
   }
 }
 
-if not vim.g.long_path_length then
-  vim.g.long_path_length = 50
-end
-
+if not vim.g.long_path_length then vim.g.long_path_length = 50 end
 local function shorten_long_paths(name)
   if #name < vim.g.long_path_length then return name end
   local n = require("eduardo.lib.utils").count_substr(name, "/")
@@ -50,7 +47,8 @@ require("plainline").setup {
 
 --------------------------------------------------------------------------------
 
-vim.g.accent_color = "green"
+vim.g.accent_color = "yellow"
+vim.g.accent_gray_status = true
 vim.g.accent_terminal = true
 vim.cmd.colors "accent"
 

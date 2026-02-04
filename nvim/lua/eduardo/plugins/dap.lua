@@ -16,9 +16,15 @@ dap_bind("l", function() require("dap").run_last()           end, "run_last" )
 dap_bind("h", function() require("dap.ui.widgets").hover()   end, "hover"    )
 dap_bind("p", function() require("dap.ui.widgets").preview() end, "preview"  )
 
+dap_bind("c", function()
+  vim.ui.input({ prompt = "Condição do breakpoint: " }, function(cond)
+    require("dap").toggle_breakpoint(cond)
+end
+end)
+
 dap_bind("L", function()
   require("dap").set_breakpoint(nil, nil, vim.fn.input("dap_log: "))
-end, "break_with_log")
+end, "log")
 
 dap_bind("f", function()
   local w = require("dap.ui.widgets")
