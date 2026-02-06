@@ -47,7 +47,7 @@ require("plainline").setup {
 
 --------------------------------------------------------------------------------
 
-vim.g.accent_color = "yellow"
+vim.g.accent_italic_comments = true
 vim.g.accent_gray_status = true
 vim.g.accent_terminal = true
 vim.cmd.colors "accent"

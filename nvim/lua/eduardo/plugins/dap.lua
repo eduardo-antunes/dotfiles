@@ -19,8 +19,8 @@ dap_bind("p", function() require("dap.ui.widgets").preview() end, "preview"  )
 dap_bind("c", function()
   vim.ui.input({ prompt = "Condição do breakpoint: " }, function(cond)
     require("dap").toggle_breakpoint(cond)
-end
-end)
+  end)
+end, "break_on_condition")
 
 dap_bind("L", function()
   require("dap").set_breakpoint(nil, nil, vim.fn.input("dap_log: "))
