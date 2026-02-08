@@ -112,4 +112,13 @@ function M.set_local_term_keys(specs)
   end
 end
 
+-- Abre arquivo com nome obtido pela substituição de uma lista de padrões
+-- Utilizado por conveniência em arquivos de ftplugin
+function M.edit_tr(name, patterns)
+  for _, pattern in ipairs(patterns) do
+    name = name:gsub(pattern[1], pattern[2], pattern.n)
+  end
+  vim.cmd.edit(name)
+end
+
 return M

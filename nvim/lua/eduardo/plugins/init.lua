@@ -52,10 +52,15 @@ vim.g.accent_gray_status = true
 vim.g.accent_terminal = true
 vim.cmd.colors "accent"
 
-vim.keymap.set("n", "<leader><tab>", function()
+vim.keymap.set("n", "<leader><up>", function()
   vim.g.accent_gray_status = not vim.g.accent_gray_status
   vim.cmd.colors "accent"
 end, { desc = "accent toggle_gray" })
+
+vim.keymap.set("n", "<leader><down>", function()
+  vim.g.accent_darken = not vim.g.accent_darken
+  vim.cmd.colors "accent"
+end, { desc = "accent toggle_darken" })
 
 local pick = require("mini.pick")
 local function pick_accent_colors()
