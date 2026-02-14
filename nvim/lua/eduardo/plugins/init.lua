@@ -34,7 +34,7 @@ require("mason").setup {
   }
 }
 
-if not vim.g.long_path_length then vim.g.long_path_length = 50 end
+vim.g.long_path_length = vim.g.long_path_length or 50
 local function shorten_long_paths(name)
   if #name < vim.g.long_path_length then return name end
   local n = require("eduardo.lib.utils").count_substr(name, "/")
@@ -47,6 +47,7 @@ require("plainline").setup {
 
 --------------------------------------------------------------------------------
 
+vim.g.accent_color = "green"
 vim.g.accent_italic_comments = true
 vim.g.accent_gray_status = true
 vim.g.accent_terminal = true
@@ -76,6 +77,6 @@ local function pick_accent_colors()
 end
 
 pick.registry.accent_colors = pick_accent_colors
-vim.keymap.set("n", "<leader>C", pick_accent_colors, {
+vim.keymap.set("n", "<leader><left>", pick_accent_colors, {
   desc = "accent pick_colors"
 })

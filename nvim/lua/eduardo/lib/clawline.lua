@@ -23,6 +23,14 @@ function M.goto(n)
   vim.cmd.edit(M.clawline_list[n])
 end
 
+local function edit_file_under_cursor()
+  local n = vim.api.nvim_win_get_cursor(0)[1]
+  local name = vim.api.nvim_buf_get_lines(0, n - 1, n, false)[1]
+  if not name or name == "" then return end
+  vim.api.nvim_win_close(0, false)
+  vim.cmd.edit(name)
+end
+
 local function create_clawline_list_buffer()
   local buf = vim.api.nvim_create_buf(false, true)
   local name = string.format("%d/clawline", M.buf_nr)
@@ -37,15 +45,9 @@ local function create_clawline_list_buffer()
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
   -- Define os atalhos para o buffer
-  vim.keymap.set("n", "<cr>", function()
-    local n = vim.api.nvim_win_get_cursor(0)[1]
-    local name = vim.api.nvim_buf_get_lines(0, n - 1, n, false)[1]
-    if not name or name == "" then return end
-    vim.api.nvim_win_close(0, false)
-    vim.cmd.edit(name)
-  end, { buffer = buf })
+  vim.keymap.set("n", "<cr>", edit_file_under_cursor, { buffer = buf })
+  vim.keymap.set("n", "<c-e>", edit_file_under_cursor, { buffer = buf })
   vim.keymap.set("n", "q", "<c-w>q", { buffer = buf })
-
   return buf
 end
 

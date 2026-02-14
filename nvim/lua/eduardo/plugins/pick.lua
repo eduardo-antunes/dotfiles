@@ -6,7 +6,7 @@ local u = require("eduardo.lib.utils")
 
 vim.ui.select = pick.ui_select
 pick.setup {
-  window = { config = u.float_win_config },
+  window = { config = u.float_win_config, prompt_caret = "█ " },
   source = { show = pick.default_show },
 }
 
@@ -93,6 +93,17 @@ local function all_files()
 end
 pick.registry.all_files = all_files
 vim.keymap.set("n", "<leader>F", all_files, { desc = "pick all_files" })
+
+-- Pesquisa na lista de arquivos do clawline.lua
+local function clawline_files()
+  local source = {
+    name = "Clawline Pick",
+    items = require("eduardo.lib.clawline").clawline_list
+  }
+  pick.start { source = source }
+end
+pick.registry.clawline = clawline_files
+vim.keymap.set("n", "<leader>i", clawline_files, { desc = "pick clawline" })
 
 --------------------------------------------------------------------------------
 

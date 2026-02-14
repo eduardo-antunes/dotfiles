@@ -84,4 +84,3 @@ for i = 1, 9 do
   local desc = string.format("clawline goto %d", i)
   vim.keymap.set("n", lhs, function() claw.goto(i) end, { desc = desc })
 end
-
