@@ -1,4 +1,4 @@
-> ![NOTE]
+> [!NOTE]
 > Decidi passar os meus arquivos de configuração para um novo repositório no
 > codeberg; você pode encontrá-lo
 > [aqui](https://codeberg.org/eduardo-antunes/dotfiles). Este repositório ficará
