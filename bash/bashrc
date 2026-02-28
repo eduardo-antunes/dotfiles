@@ -4,6 +4,7 @@
 
 # Carrega as configurações globais
 if [ -f /etc/bashrc ]; then source /etc/bashrc; fi
+unset PROMPT_COMMAND # previne que o bash configure o título do terminal
 
 # Diretório pessoal de executáveis adicionado ao PATH
 if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]; then
@@ -53,8 +54,8 @@ alias la='ls -lAh'
 alias tree='tree --gitignore --dirsfirst'
 alias glog='git log --oneline --all --graph'
 alias gis='git status'
-function mkcd { mkdir -p "$1" && cd "$1"; }
-function open { xdg-open "$1" &> /dev/null & disown; }
+mkcd() { mkdir -p "$1" && cd "$1"; }
+open() { xdg-open "$1" &> /dev/null & disown; }
 
 # Carrega meu script de cd, caso esteja presente
 if [[ -f "$HOME/.local/bin/ecd-func.sh" ]]; then
@@ -62,10 +63,6 @@ if [[ -f "$HOME/.local/bin/ecd-func.sh" ]]; then
   alias cd=ecd
   bind '"\C-w":"cd --\n"' # atalho mais conveniente
 fi
-
-# Suporte à sequência OSC 7
-function osc7 { printf "\e]7;file://%s%s\e\\" "$HOSTNAME" "$PWD"; }
-export PROMPT_COMMAND="osc7${PROMPT_COMMAND:+$'\n'$PROMPT_COMMAND}"
 
 # Permite um bashrc privado, que não é incluído na minha configuração pessoal,
 # para variáveis de ambientes com segredos (senhas, chaves de licença, etc.) e

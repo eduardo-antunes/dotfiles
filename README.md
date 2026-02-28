@@ -1,3 +1,8 @@
+> [!NOTE] Decidi passar os meus arquivos de configuração para um novo
+> repositório no codeberg; você pode encontrá-lo
+> [aqui](https://codeberg.org/eduardo-antunes/dotfiles). Este repositório ficará
+> apenas como um registro histórico.
+
 Esse repositório contém configurações para alguns programas que eu uso no
 dia a dia:
 
